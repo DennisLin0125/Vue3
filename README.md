@@ -266,3 +266,34 @@ const 代理對象= reactive(源對象)
     ```js
     this.$emit
     ```
+
+## 7.計算屬性與監視
+
+### 1.computed函數
+
+- 與Vue2.x中computed配置功能一致
+
+- 寫法
+
+   ```js
+   import {computed} from 'vue'
+  
+   setup(){
+       …
+   //計算屬性——簡寫
+       let fullName = computed(()=>{
+           return person.firstName + '-' + person.lastName
+       })
+       //計算屬性－完整
+       let fullName = computed({
+           get(){
+               return person.firstName + '-' + person.lastName
+           },
+           set(value){
+               const nameArr = value.split('-')
+               person.firstName = nameArr[0]
+               person.lastName = nameArr[1]
+           }
+       })
+   }
+   ```
