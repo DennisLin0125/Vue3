@@ -317,3 +317,27 @@ const 代理對象= reactive(源對象)
    watch([sum,msg],(newValue,oldValue)=>{
    console.log('sum或msg改變了',newValue,oldValue)
    })
+
+   /* 情況三：監視reactive定義的響應式數據
+   若watch監視的是reactive定義的響應式數據，則無法正確取得oldValue！ ！
+   若watch監視的是reactive定義的響應式數據，則強制開啟了深度監視
+   */
+   watch(person,(newValue,oldValue)=>{
+   console.log('person變了',newValue,oldValue)
+   },{immediate:true,deep:false}) //此處的deep配置不再奏效
+  
+   //情況四：監視reactive定義的響應式資料中的某個屬性
+   watch(()=>person.job,(newValue,oldValue)=>{
+   console.log('person的job變了',newValue,oldValue)
+   },{immediate:true,deep:true})
+  
+   //情況五：監視reactive定義的響應式資料中的某些屬性
+   watch([()=>person.job,()=>person.name],(newValue,oldValue)=>{
+   console.log('person的job變了',newValue,oldValue)
+   },{immediate:true,deep:true})
+  
+   //特殊狀況
+   watch(()=>person.job,(newValue,oldValue)=>{
+       console.log('person的job變了',newValue,oldValue)
+   },{deep:true}) //此處由於監視的是reactive素定義的物件中的某個屬性，所以deep配置有效
+   ```
