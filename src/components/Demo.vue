@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { reactive, watch, ref } from "vue";
+import { reactive, watch, ref, watchEffect } from "vue";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Demo",
@@ -38,23 +38,10 @@ export default {
       age: 18,
     });
 
-    // 情況1 監視ref所定義的1個響應式數據
-    // watch([msg], (newValue, oldValue) => {
-    //   console.log("sum的值變了", newValue, oldValue);
-    // });
-
-    // 情況2 監視ref所定義的多個響應式數據
-    // watch(
-    //   [msg, sum],
-    //   (newValue, oldValue) => {
-    //     console.log("msg的值變了", newValue, oldValue);
-    //   },
-    //   { immediate: true }
-    // );
-
-    // 情況3 監視reactive所定義的1個響應式數據,此處無法獲得oldValue
-    watch(person,(newValue, oldValue) => {
-      console.log('person變化了',newValue, oldValue)
+    watchEffect(() => {
+      const x1 = sum.value
+      const x2 = person.name
+      console.log('watchEffect所指定的回調執行了')
     })
 
     return {

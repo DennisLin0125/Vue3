@@ -341,3 +341,23 @@ const 代理對象= reactive(源對象)
        console.log('person的job變了',newValue,oldValue)
    },{deep:true}) //此處由於監視的是reactive素定義的物件中的某個屬性，所以deep配置有效
    ```
+
+### 3.watchEffect函數
+
+- watch的套路是：既要指明監視的屬性，也要指明監視的回調。
+
+- watchEffect的套路是：不用指明監視哪個屬性，監視的回呼中用到哪個屬性，那就監視哪個屬性。
+
+- watchEffect有點像computed：
+
+  - 但computed注重的計算出來的值（回呼函數的回傳值），所以必須要寫回傳值。
+  - 而watchEffect比較注重的是過程（回呼函數的函數體），所以不用寫回傳值。
+
+   ```js
+   //watchEffect所指定的回呼中所用到的資料只要發生變化，就直接重新執行回呼。
+   watchEffect(()=>{
+       const x1 = sum.value
+       const x2 = person.age
+       console.log('watchEffect配置的回呼執行了')
+   })
+   ```
