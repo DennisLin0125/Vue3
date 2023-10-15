@@ -1,43 +1,48 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <h1>一個人的訊息</h1>
-  姓:<input type="text" v-model="person.firstName" />
-  <br />
-  名:<input type="text" v-model="person.lastName" />
-  <br />
-  <br />
-  <span>全名:{{ person.fullName }}</span>
-  <br />
-  全名: <input type="text" v-model="person.fullName" />
+  <h1>當前求和為: {{ sum }}</h1>
+  <button @click="sum++">點我加1</button>
+  <hr />
+  <h2>當前的信息為: {{ msg }}</h2>
+  <button @click="msg += '!'">修改訊息</button>
 </template>
 
 <script>
-import { reactive, computed } from "vue";
+import { ref, watch } from "vue";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Demo",
+  // watch: {
+  //   // sum(newValue,oldValue) {
+  //   //   console.log('sum的值變了',newValue,oldValue)
+  //   // }
+  //   sum: {
+  //     immediate:true,
+  //     deep:true,
+  //     handler(newValue,oldValue){
+  //       console.log('sum的值變了',newValue,oldValue)
+  //     }
+  //   }
+  // },
 
   setup() {
     // 配置數據
-    let person = reactive({
-      firstName: "張",
-      lastName: "三",
-    });
+    let sum = ref(0);
+    let msg = ref("你好");
 
-    // 計算屬性
-    person.fullName = computed({
-      get() {
-        return person.firstName + "-" + person.lastName;
-      },
-      set(value) {
-        const arr = value.split("-");
-        person.firstName = arr[0];
-        person.lastName = arr[1];
-      },
-    });
+    // 情況1 監視ref所定義的1個響應式數據
+    // watch([msg], (newValue, oldValue) => {
+    //   console.log("sum的值變了", newValue, oldValue);
+    // });
+
+    // 情況2 監視ref所定義的多個響應式數據
+    watch([msg,sum], (newValue, oldValue) => {
+      console.log("msg的值變了", newValue, oldValue);
+    },{immediate:true,});
 
     return {
-      person,
+      sum,
+      msg,
     };
   },
 };

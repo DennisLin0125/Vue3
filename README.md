@@ -297,3 +297,23 @@ const 代理對象= reactive(源對象)
        })
    }
    ```
+
+### 2.watch函數
+
+- 與Vue2.x中watch設定功能一致
+
+- 兩個小「坑」：
+
+  - 監視reactive定義的響應式資料時：oldValue無法正確取得、強制開啟了深度監視（deep配置失效）。
+  - 監視reactive定義的響應式資料中某個屬性時：deep配置有效。
+  
+   ```js
+   //情況一：監視ref定義的響應式數據
+   watch(sum,(newValue,oldValue)=>{
+   console.log('sum改變了',newValue,oldValue)
+   },{immediate:true})
+  
+   //情況二：監視多個ref定義的響應式數據
+   watch([sum,msg],(newValue,oldValue)=>{
+   console.log('sum或msg改變了',newValue,oldValue)
+   })
