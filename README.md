@@ -1,4 +1,6 @@
-# Vue3.0中可以繼續使用Vue2.x中的生命週期鉤子，但有兩個被更名
+# Vue3.0中可以繼續使用Vue2.x中的生命週期鉤子
+
+## 有兩個被更名
 
 - `beforeDestroy`改名為 `beforeUnmount`
 - `destroyed`改名為 `unmounted`
