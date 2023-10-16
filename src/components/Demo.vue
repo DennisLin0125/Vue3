@@ -3,73 +3,26 @@
   <div>
     <h1>當前的和為 : {{ sum }}</h1>
     <button @click="sum++">點我+1</button>
+    <hr />
+    <h2>當前鼠標座標為: X : {{ point.x }} Y: {{ point.y }}</h2>
   </div>
 </template>
 
 <script>
-import { 
-    ref,
-    onBeforeMount,
-    onMounted,
-    onBeforeUpdate,
-    onUpdated,
-    onBeforeUnmount,
-    onUnmounted
- } from "vue";
- 
+import { ref } from "vue";
+import usePoint from "../hooks/usePoint";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Demo",
   setup() {
-    let sum = ref(0)
-    // 通過組合API使用生命鉤子
-    onBeforeMount(() => {
-         console.log('---onBeforeMount---')   
-    })
-    onMounted(() => {
-        console.log('---onMounted---') 
-    })
-    onBeforeUpdate(() => {
-        console.log('---onBeforeUpdate---') 
-    })
-    onUpdated(() => {
-        console.log('---onUpdated---') 
-    })
-    onBeforeUnmount(() => {
-        console.log('---onBeforeUnmount---') 
-    })
-    onUnmounted(() => {
-        console.log('---onUnmounted---') 
-    })
+    let sum = ref(0);
+
+    let point = usePoint();
 
     return {
       sum,
+      point
     };
   },
-  //   通過配置項使用生命鉤子
-//   beforeCreate() {
-//     console.log("---beforeCreate---");
-//   },
-//   created() {
-//     console.log("---created---");
-//   },
-//   beforeMount() {
-//     console.log("---beforeMount---");
-//   },
-//   mounted() {
-//     console.log("---mounted---");
-//   },
-//   beforeUpdate() {
-//     console.log("---beforeUnmount---");
-//   },
-//   updated() {
-//     console.log("---updated---");
-//   },
-//   beforeUnmount() {
-//     console.log("---beforeUnmount---");
-//   },
-//   unmounted() {
-//     console.log("---unmounted---");
-//   },
 };
 </script>
