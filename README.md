@@ -1,7 +1,16 @@
-# 自訂hook函數
+# toRef
 
-- 什麼是hook？ —— 本質是一個函數，把setup函數中使用的Composition API進行了封裝。
+- 作用：建立一個 ref 對象，其value值指向另一個對像中的某個屬性。
+- 語法：
 
-- 類似vue2.x中的mixin。
+```js
+const name = toRef(person,'name')
+```
 
-- 自訂hook的優點: 重複使用程式碼, 讓setup中的邏輯更清楚易懂。
+- 應用: 要將響應式物件中的某個屬性單獨提供給外部使用時。
+
+- 擴充：`toRefs` 與`toRef`功能一致，但可以批次建立多個 ref 對象，語法：
+
+```js
+toRefs(person)
+```
