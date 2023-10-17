@@ -73,3 +73,40 @@ export default {
 }
 </script>
 ```
+
+## 5.provide 與 inject
+
+- 作用：實現祖與後代組件間通信
+
+- 套路：父元件有一個 `provide` 選項來提供數據，後代元件有一個 `inject` 選項來開始使用這些數據
+
+- 具體寫法：
+
+1. 祖組件中：
+
+```js
+setup(){
+
+    let car = reactive({name:'賓士',price:'40萬'})
+    provide('car',car)
+
+}
+```
+
+2. 後代組件中：
+
+```js
+setup(props,context){
+
+    const car = inject('car')
+    return {car}
+
+}
+```
+
+## 6.響應式資料的判斷
+
+- isRef: 檢查一個值是否為一個 ref 對象
+- isReactive: 檢查一個物件是否是由 `reactive` 所建立的響應式代理
+- isReadonly: 檢查一個物件是否是由 `readonly` 建立的唯讀代理
+- isProxy: 檢查一個物件是否是由 `reactive` 或 `readonly` 方法所建立的代理
