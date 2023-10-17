@@ -81,15 +81,14 @@ const Child = defineAsyncComponent(()=>import('./components/Child.vue'))
 
   - 將全域的API，即：`Vue.xxx`調整到應用程式實例（`app`）上
 
-     | 2.x 全域 API（`Vue`） | 3.x 實例 API (`app`) |
-     | ------------------------- | ----------------------- -------------------- |
-     | Vue.config.xxxx | app.config.xxxx |
-     | Vue.config.productionTip | 移除 |
-     | Vue.component | app.component |
-     | Vue.directive | app.directive |
-     | Vue.mixin | app.mixin |
-     | Vue.use | app.use |
-     | Vue.prototype | app.config.globalProperties |
+     2.x 全域 API（`Vue`）      3.x 實例 API (`app`) 
+     Vue.config.xxxx           app.config.xxxx 
+     Vue.config.productionTip  移除 
+     Vue.component             app.component 
+     Vue.directive             app.directive 
+     Vue.mixin                 app.mixin 
+     Vue.use                   app.use 
+     Vue.prototype             app.config.globalProperties 
   
 ## 2.其他改變
 
@@ -151,4 +150,3 @@ const Child = defineAsyncComponent(()=>import('./components/Child.vue'))
 
    > 過濾器雖然這看起來很方便，但它需要一個自訂語法，打破大括號內表達式是 “只是 JavaScript” 的假設，這不僅有學習成本，而且有實現成本！ 建議用方法呼叫或計算屬性去替換過濾器。
 
-- ......
