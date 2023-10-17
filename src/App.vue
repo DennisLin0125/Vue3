@@ -1,22 +1,21 @@
 <template>
-  <button @click="isShowDemo = !isShowDemo">切換顯示</button>
-  <Demo v-if="isShowDemo" />
+  <div class="app">
+    <h3>我是APP組件</h3>
+    <Child />
+  </div>
 </template>
 
 <script>
-import { ref } from "vue";
-import Demo from "./components/Demo.vue";
+import Child from "./components/Child.vue";
 export default {
   name: "App",
-  components: { Demo },
-  setup() {
-    let isShowDemo = ref(true);
-    return {
-      isShowDemo,
-    };
-  },
+  components: { Child },
 };
 </script>
 
 <style>
+.app {
+  background-color: gray;
+  padding: 10px;
+}
 </style>
