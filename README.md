@@ -39,18 +39,18 @@ const Child = defineAsyncComponent(()=>import('./components/Child.vue'))
 ```vue
 <template>
     <div class="app">
-    <h3>我是App元件</h3>
-    <Suspense>
+        <h3>我是App元件</h3>
+        <Suspense>
 
-        <template v-slot:default>
-            <Child/>
-        </template>
+            <template v-slot:default>
+                <Child/>
+            </template>
 
-        <template v-slot:fallback>
-            <h3>載入中.....</h3>
-        </template>
+            <template v-slot:fallback>
+                <h3>載入中.....</h3>
+            </template>
 
-    </Suspense>
+        </Suspense>
     </div>
 </template>
 ```
